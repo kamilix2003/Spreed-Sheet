@@ -1,5 +1,6 @@
 #include <vector>
 #include <tuple>
+#include <memory>
 
 enum Funcs{
     plain_value = 0,
@@ -17,7 +18,7 @@ class Cell{
          */
         double m_value;
         /**
-         * @brief Function describing value of the cell
+         * @brief Function describing the cell
          * 
          */
         Funcs m_function;
@@ -26,4 +27,14 @@ class Cell{
          * 
          */
         std::vector<std::tuple<int, int>> arguments;
+    public:
+        Cell();
+
+        void set_value(double val);
+        void set_function(Funcs func);
+        void set_arguments(std::vector<std::tuple<int, int>> args);
+
+        double get_value();
+        Funcs get_function();
+        std::shared_ptr<std::vector<std::tuple<int, int>>> get_arguments();
 };
