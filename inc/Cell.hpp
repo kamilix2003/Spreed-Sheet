@@ -1,8 +1,9 @@
 #include <vector>
 #include <tuple>
 #include <memory>
+#include "Address.hpp"
 
-enum Funcs{
+enum Functions{
     plain_value = 0,
     add,
     subtract,
@@ -10,31 +11,17 @@ enum Funcs{
     divide,    
 };
 
+class Definition{
+    private:
+        Functions m_func;
+        std::vector<Address> rel_args;
+        std::vector<double> const_args;
+
+};
+
 class Cell{
     private:
-        /**
-         * @brief Calcualted or stored numeric value
-         * 
-         */
         double m_value;
-        /**
-         * @brief Function describing the cell
-         * 
-         */
-        Funcs m_function;
-        /**
-         * @brief Arguments 
-         * 
-         */
-        std::vector<std::tuple<int, int>> arguments;
-    public:
-        Cell();
-
-        void set_value(double val);
-        void set_function(Funcs func);
-        void set_arguments(std::vector<std::tuple<int, int>> args);
-
-        double get_value();
-        Funcs get_function();
-        std::shared_ptr<std::vector<std::tuple<int, int>>> get_arguments();
+        Definition m_def;
+        unsigned int m_age;
 };
