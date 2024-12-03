@@ -1,11 +1,24 @@
 #include <iostream>
-
-#include "../inc/Address.hpp"
+#include <Sheet.hpp>
 
 int main(){
-    Address add1(3, 5);
-    Address add2("AA", 5);
 
-    std::cout << "add1: " << add1.get_col() << ", " << add1.get_row() << "\n";
-    std::cout << "add2: " << add2.get_col() << ", " << add2.get_row() << "\n";
+    Definition d1(Operation::add);
+    d1.append_const(1.5);
+    d1.append_const(3.14);
+
+    Cell c1(1);
+    Cell c2(2);
+    Cell c3(3);
+
+    c1.set_definition(d1);
+    c1.evaluate();
+
+    Sheet s;
+    s.add_cell("A", c1);
+    s.add_cell("B", c2);
+    s.add_cell("C", c3);
+    // std::cout<<s.get_cell("B").get_value();
+
+
 }
