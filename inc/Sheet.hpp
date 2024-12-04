@@ -8,7 +8,7 @@ class Sheet {
 
     public:
 
-    // Cell
     Cell get_cell(const std::string& key);
     void add_cell(const std::string& key, Cell& cell);
+    std::shared_ptr<std::map<std::string, Cell>> get_cells();
 };
