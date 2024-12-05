@@ -10,5 +10,6 @@ class Sheet {
 
     Cell get_cell(const std::string& key);
     void add_cell(const std::string& key, Cell& cell);
-    std::shared_ptr<std::map<std::string, Cell>> get_cells();
+
+    void evaluate_cell(const std::string& key);
 };

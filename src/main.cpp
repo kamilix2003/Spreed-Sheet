@@ -13,13 +13,6 @@ int main(){
     Cell c2(2);
     Cell c3(3);
 
-    Sheet s;
-    s.add_cell("A", c1);
-    s.add_cell("B", c2);
-    s.add_cell("C", c3);
 
-    c1.set_definition(d1);
-    c1.evaluate();
-    std::cout<<s.get_cell("A").get_value()<<std::endl;
 
 }

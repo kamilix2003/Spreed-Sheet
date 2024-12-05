@@ -8,6 +8,16 @@ Definition::Definition(const Operation op = none) : m_op(op) {
 
 }
 
+Definition::Definition(const Definition &definition)
+    : m_op(definition.get_operation())
+{
+    for (auto& arg : *definition.get_args_vec()) {
+        m_args.push_back(arg);
+    }
+    for (auto constant : *definition.get_const_vec()) {
+        m_const.push_back(constant);
+    }
+}
 
 // Getters
 Operation Definition::get_operation() const {
@@ -33,6 +43,10 @@ void Definition::append_args(const std::string& argument) {
 void Definition::append_const(const double constant) {
     m_const.push_back(constant);
 }
+
+// Operators
+
+
 
 // Utility
 void Definition::print_const() const {

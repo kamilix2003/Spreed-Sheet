@@ -10,13 +10,14 @@ enum Operation {
 
 class Definition {
 private:
-    Operation m_op;
+    Operation m_op = none;
     std::vector<std::string> m_args{};
     std::vector<double> m_const{};
 
 public:
     // Constructors
     explicit Definition(Operation op);
+    Definition(const Definition& definition);
 
     // Getters
     Operation get_operation() const;
@@ -33,3 +34,4 @@ public:
     void print_const() const;
     void print() const;
 };
+
