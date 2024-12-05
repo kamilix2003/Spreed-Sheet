@@ -13,7 +13,9 @@ private:
 
 public:
     // Constructors
-    explicit Cell(double value = 0);
+    Cell();
+    explicit Cell(double value);
+    Cell(double value, const Definition& definition);
 
     // Getters
     double get_value() const;
@@ -21,6 +23,12 @@ public:
 
     // Setters
     void set_value(double value);
-    void set_definition(Definition definition);
+    void add_value(double value);
+    void mul_value(double value);
+    void set_definition(const Definition& definition);
+
+    // Utility
+    void print_value() const;
+    void print() const;
 
 };

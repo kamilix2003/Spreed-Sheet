@@ -3,19 +3,33 @@
 
 #include <iostream>
 
+std::array<std::string, 3> op_names = {
+    "Plain value",
+    "Addition",
+    "Multiplication",
+};
+
 // Constructors
 Definition::Definition(const Operation op = none) : m_op(op) {
+
+}
+
+Definition::Definition(const Operation op, const std::vector<std::string>& args, const std::vector<double>& consts)
+    : m_op(op), m_args(args), m_consts(consts)
+{
 
 }
 
 Definition::Definition(const Definition &definition)
     : m_op(definition.get_operation())
 {
-    for (auto& arg : *definition.get_args_vec()) {
+    const auto args = definition.get_args_vec();
+    const auto consts = definition.get_const_vec();
+    for (auto& arg : *args) {
         m_args.push_back(arg);
     }
-    for (auto constant : *definition.get_const_vec()) {
-        m_const.push_back(constant);
+    for (auto constant : *consts) {
+        m_consts.push_back(constant);
     }
 }
 
@@ -29,10 +43,23 @@ std::shared_ptr<std::vector<std::string>> Definition::get_args_vec() const {
 }
 
 std::shared_ptr<std::vector<double>> Definition::get_const_vec() const {
-    return std::make_shared<std::vector<double>>(m_const);
+    return std::make_shared<std::vector<double>>(m_consts);
 }
 
 // Setters
+
+void Definition::set_operation(const Operation op) {
+    m_op = op;
+}
+
+void Definition::set_args_vec(const std::vector<std::string> &args) {
+    m_args = args;
+}
+
+void Definition::set_const_vec(const std::vector<double> &consts) {
+    m_consts = consts;
+}
+
 
 
 // Arguments operations
@@ -41,7 +68,7 @@ void Definition::append_args(const std::string& argument) {
 }
 
 void Definition::append_const(const double constant) {
-    m_const.push_back(constant);
+    m_consts.push_back(constant);
 }
 
 // Operators
@@ -50,20 +77,21 @@ void Definition::append_const(const double constant) {
 
 // Utility
 void Definition::print_const() const {
-    for (const auto& arg : m_const) {
+    for (const auto& arg : m_consts) {
         std::cout << arg << " ";
     }
 }
 
 void Definition::print() const {
-    std::cout<<m_op<<"\nArguments:\n";
+    std::cout<<"Operation: "<<op_names[m_op]<<"\nArguments: ";
     for (const auto& arg : m_args) {
-        std::cout<<arg<<"\n";
+        std::cout<<arg<<" ";
     }
-    std::cout<<"Constants:\n";
-    for (const auto& arg : m_const) {
-        std::cout<<arg<<"\n";
+    std::cout<<"\nConstants: ";
+    for (const auto& arg : m_consts) {
+        std::cout<<arg<<" ";
     }
+    std::cout<<std::endl;
 }
 
 

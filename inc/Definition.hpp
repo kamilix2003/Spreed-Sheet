@@ -1,5 +1,6 @@
 #include <memory>
 #include <vector>
+#include <array>
 #include <string>
 
 enum Operation {
@@ -12,11 +13,12 @@ class Definition {
 private:
     Operation m_op = none;
     std::vector<std::string> m_args{};
-    std::vector<double> m_const{};
+    std::vector<double> m_consts{};
 
 public:
     // Constructors
     explicit Definition(Operation op);
+    Definition(Operation op, const std::vector<std::string>& args, const std::vector<double>& consts);
     Definition(const Definition& definition);
 
     // Getters
@@ -25,6 +27,9 @@ public:
     std::shared_ptr<std::vector<double>> get_const_vec() const;
 
     // Setters
+    void set_operation(Operation op);
+    void set_args_vec(const std::vector<std::string> &args);
+    void set_const_vec(const std::vector<double> &consts);
 
     // Arguments operations
     void append_args(const std::string& argument);
