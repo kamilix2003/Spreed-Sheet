@@ -5,20 +5,22 @@
 
 // Constructors
 Cell::Cell()
-    : m_value(0), m_definition(none)
-{
+    : m_value(0), m_definition(none, {}, {}) {
 
 }
 
 Cell::Cell(const double value)
-    : m_value(value), m_definition(none)
-{
+    : m_value(0), m_definition(none, {}, {value}) {
 
 }
 
-Cell::Cell(const double value, const Definition &definition)
-    : m_value(value), m_definition(definition)
-{
+Cell::Cell(const std::string& address)
+    : m_value(0), m_definition(none, {address}, {}) {
+
+}
+
+Cell::Cell(const Definition &definition)
+    : m_value(0), m_definition(definition) {
 
 }
 

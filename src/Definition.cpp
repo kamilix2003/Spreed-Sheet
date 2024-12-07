@@ -10,9 +10,6 @@ const std::array<std::string, 3> op_names = {
 };
 
 // Constructors
-Definition::Definition(const Operation op = none) : m_op(op) {
-
-}
 
 Definition::Definition(const Operation op, const std::vector<std::string>& args, const std::vector<double>& consts)
     : m_op(op), m_args(args), m_consts(consts)
@@ -45,6 +42,16 @@ std::shared_ptr<std::vector<std::string>> Definition::get_args_vec() const {
 std::shared_ptr<std::vector<double>> Definition::get_const_vec() const {
     return std::make_shared<std::vector<double>>(m_consts);
 }
+
+std::string Definition::get_first_arg() const {
+    return m_args.at(0);
+}
+
+double Definition::get_first_const() const {
+    return m_consts.at(0);
+}
+
+
 
 // Setters
 

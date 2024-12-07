@@ -15,7 +15,8 @@ public:
     // Constructors
     Cell();
     explicit Cell(double value);
-    Cell(double value, const Definition& definition);
+    explicit Cell(const std::string& address);
+    explicit Cell(const Definition& definition);
 
     // Getters
     double get_value() const;

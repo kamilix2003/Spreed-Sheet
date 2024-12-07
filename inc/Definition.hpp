@@ -19,7 +19,6 @@ private:
 
 public:
     // Constructors
-    explicit Definition(Operation op);
     Definition(Operation op, const std::vector<std::string>& args, const std::vector<double>& consts);
     Definition(const Definition& definition);
 
@@ -27,6 +26,8 @@ public:
     Operation get_operation() const;
     std::shared_ptr<std::vector<std::string>> get_args_vec() const;
     std::shared_ptr<std::vector<double>> get_const_vec() const;
+    std::string get_first_arg() const;
+    double get_first_const() const;
 
     // Setters
     void set_operation(Operation op);

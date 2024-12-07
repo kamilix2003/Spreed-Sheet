@@ -26,4 +26,7 @@ class Sheet {
     // Utility
     bool cell_exist(const std::string& key);
     void print_cell(const std::string& key);
+    void print_cell_value(const std::string& key);
+    void print_sheet() const;
+    void print_sheet_values() const;
 };
