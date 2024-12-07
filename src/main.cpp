@@ -36,4 +36,9 @@ int main(){
     s.print_cell("B");
     s.print_cell("C");
 
+    s.set_sheet_input("AB12 1.2 AA11 A1");
+    s.process_sheet_input();
+
+    std::cout << (s.cell_exist("XX") ? "YES" : "NO") << std::endl;
+    std::cout << (s.cell_exist("A") ? "YES" : "NO") << std::endl;
 }
