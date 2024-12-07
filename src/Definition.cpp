@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-std::array<std::string, 3> op_names = {
+const std::array<std::string, 3> op_names = {
     "Plain value",
     "Addition",
     "Multiplication",

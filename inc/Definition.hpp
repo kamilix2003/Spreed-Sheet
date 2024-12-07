@@ -3,6 +3,8 @@
 #include <array>
 #include <string>
 
+#define OP_COUNT 3
+
 enum Operation {
     none = 0,
     add = 1,

@@ -45,8 +45,6 @@ void Cell::mul_value(double value) {
     m_value *= value;
 }
 
-
-
 void Cell::set_definition(const Definition &definition) {
     m_definition = definition;
 }

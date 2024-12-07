@@ -82,6 +82,20 @@ std::vector<std::string> split_sheet_input(const std::string &input) {
     return output;
 }
 
+const std::array<std::string, OP_COUNT> op_str = {
+    "NONE",
+    "ADD",
+    "MUL",
+};
+
+Operation is_operation(const std::string& input) {
+    for (size_t i = 0; i < OP_COUNT; i++) {
+        if (op_str[i] == input)
+            return static_cast<Operation>(i);
+    }
+    return none;
+}
+
 bool is_address(const std::string& input) {
     if ( std::any_of(input.begin(), input.end(), isupper) ) {
         return true;
@@ -92,22 +106,27 @@ bool is_address(const std::string& input) {
 /*
     Example input: AB12 AA1 BB3 1.2 11
     First element - output cell
+    Second element - operation
+                    plain value
+                    reference to cell
     Other elements - inputs
 */
 void Sheet::process_sheet_input() {
-    std::vector<std::string> input = split_sheet_input(m_sheet_input);
-    bool first = true;
-    for (auto& s: input) {
-        if (first) {
-            std::cout << s << std::endl;
-            first = false;
-            continue;
+    const std::vector<std::string> input = split_sheet_input(m_sheet_input);
+    std::vector<std::string> args;
+    std::vector<double> consts;
+    for (size_t i = 2; i < input.size(); i++) {
+        if (is_address(input[i])) {
+            args.push_back(input[i]);
         }
-        if (is_address(s))
-            std::cout << s << std::endl;
-        else
-            std::cout << std::stod(s) << std::endl;
+        else {
+            consts.push_back(std::stod(input[i]));
+        }
     }
+    if (is_operation(input[1])) {
+        Definition def(is_operation(input[1]), args, consts);
+    }
+
 }
 
 
