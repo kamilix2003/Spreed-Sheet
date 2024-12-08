@@ -60,6 +60,14 @@ void Sheet::set_sheet_input(const std::string &input) {
     m_sheet_input = input;
 }
 
+// File I/O
+
+void Sheet::save_to_file() {
+
+}
+void Sheet::load_from_file() {}
+void Sheet::save_to_bin() {}
+void Sheet::load_from_bin() {}
 
 // Evaluation
 void Sheet::evaluate_cell(const std::string &key) {

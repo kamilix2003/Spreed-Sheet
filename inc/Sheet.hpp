@@ -18,6 +18,12 @@ class Sheet {
     void set_cell(const std::string& key, const Cell& cell);
     void set_sheet_input(const std::string& input);
 
+    // File I/O
+    void save_to_file();
+    void load_from_file();
+    void save_to_bin();
+    void load_from_bin();
+
     // Evaluation
     void evaluate_cell(const std::string& key);
     void evaluate_sheet();
