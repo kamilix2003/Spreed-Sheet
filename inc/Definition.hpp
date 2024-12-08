@@ -6,14 +6,14 @@
 #define OP_COUNT 3
 
 enum Operation {
-    none = 0,
-    add = 1,
-    mul = 2,
+    NONE = 0,
+    SUM = 1,
+    PROD = 2,
 };
 
 class Definition {
 private:
-    Operation m_op = none;
+    Operation m_op = NONE;
     std::vector<std::string> m_args{};
     std::vector<double> m_consts{};
 

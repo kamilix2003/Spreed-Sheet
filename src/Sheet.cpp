@@ -8,77 +8,6 @@
 #include <sstream>
 #include <string>
 
-// Setters
-void Sheet::set_cell(const std::string& key, const Cell& cell) {
-    m_cells[key] = cell;
-}
-
-void Sheet::set_sheet_input(const std::string &input) {
-    m_sheet_input = input;
-}
-
-
-// Evaluation
-void Sheet::evaluate_cell(const std::string &key) {
-    Cell& cell = m_cells[key];
-    switch (cell.get_definition()->get_operation()) {
-        case none:
-            try {
-                cell.set_value(cell.get_definition()->get_first_const());
-            } catch (...) {}
-            try {
-                const std::string temp = cell.get_definition()->get_first_arg();
-                cell.set_value(m_cells[temp].get_value());
-            } catch (...) {}
-            break;
-        case add:
-            {
-                const auto args_ptr = cell.get_definition()->get_args_vec();
-                const auto consts_ptr = cell.get_definition()->get_const_vec();
-
-                cell.set_value(0);
-
-                for (const auto consts : *consts_ptr) {
-                    // std::cout<<consts<<std::endl;
-                    cell.add_value(consts);
-                }
-
-                for (const auto& arg : *args_ptr) {
-                    Cell& arg_cell = m_cells[arg];
-                    cell.add_value(arg_cell.get_value());
-                    // std::cout<<arg<<std::endl;
-                }
-            }
-
-            break;
-        case mul:
-
-        {
-            const auto args_ptr = cell.get_definition()->get_args_vec();
-            const auto consts_ptr = cell.get_definition()->get_const_vec();
-
-            cell.set_value(1);
-
-            for (const auto consts : *consts_ptr) {
-                cell.mul_value(consts);
-                // std::cout<<consts<<std::endl;
-            }
-
-            for (const auto& arg : *args_ptr) {
-                Cell& arg_cell = m_cells[arg];
-                cell.mul_value(arg_cell.get_value());
-                // std::cout<<arg<<std::endl;
-            }
-        }
-
-            break;
-
-        default:
-
-            break;
-    }
-}
-
 std::vector<std::string> split_sheet_input(const std::string &input) {
     std::vector<std::string> output;
     std::istringstream iss(input);
@@ -100,7 +29,7 @@ Operation is_operator(const std::string& input) {
         if (op_str[i] == input)
             return static_cast<Operation>(i);
     }
-    return none;
+    return NONE;
 }
 
 bool is_address(const std::string& input) {
@@ -119,14 +48,83 @@ bool is_address(const std::string& input) {
     return true;
 }
 
-/*
-    Example input: AB12 AA1 BB3 1.2 11
-    First element - output cell
-    Second element - operator
-                    plain value
-                    reference to cell
-    Other elements - inputs
-*/
+// Setters
+void Sheet::set_cell(const std::string& key, const Cell& cell) {
+    m_cells[key] = cell;
+}
+
+void Sheet::set_sheet_input(const std::string &input) {
+    if (is_address(input.substr(0, 4)) == false) {
+        throw std::invalid_argument("Invalid input");
+    }
+    m_sheet_input = input;
+}
+
+
+// Evaluation
+void Sheet::evaluate_cell(const std::string &key) {
+    Cell& cell = m_cells[key];
+    switch (cell.get_definition()->get_operation()) {
+        case NONE:
+            try {
+                cell.set_value(cell.get_definition()->get_first_const());
+            } catch (...) {}
+            try {
+                const std::string temp = cell.get_definition()->get_first_arg();
+                cell.set_value(m_cells[temp].get_value());
+            } catch (...) {}
+            break;
+        case SUM:
+            {
+                const auto args_ptr = cell.get_definition()->get_args_vec();
+                const auto consts_ptr = cell.get_definition()->get_const_vec();
+
+                cell.set_value(0);
+
+                for (const auto consts : *consts_ptr) {
+                    cell.add_value(consts);
+                }
+
+                for (const auto& arg : *args_ptr) {
+                    Cell& arg_cell = m_cells[arg];
+                    cell.add_value(arg_cell.get_value());
+                }
+            }
+
+            break;
+        case PROD:
+
+        {
+            const auto args_ptr = cell.get_definition()->get_args_vec();
+            const auto consts_ptr = cell.get_definition()->get_const_vec();
+
+            cell.set_value(1);
+
+            for (const auto consts : *consts_ptr) {
+                cell.mul_value(consts);
+            }
+
+            for (const auto& arg : *args_ptr) {
+                Cell& arg_cell = m_cells[arg];
+                cell.mul_value(arg_cell.get_value());
+            }
+        }
+
+            break;
+
+        default:
+
+            break;
+    }
+}
+
+void Sheet::evaluate_sheet() {
+    for (const auto& cell : m_cells) {
+        evaluate_cell(cell.first);
+    }
+}
+
+
 void Sheet::process_sheet_input() {
     const std::vector<std::string> input = split_sheet_input(m_sheet_input);
     std::vector<std::string> args;
@@ -146,22 +144,16 @@ void Sheet::process_sheet_input() {
     }
 
     if (is_operator(input[1])) {
-        Definition def(is_operator(input[1]), args, consts);
-        m_cells[input[0]] = Cell(def);
+        m_cells.emplace(input[0], Cell(Definition(is_operator(input[1]), args, consts)));
     }
     else if (is_address(input[1])) {
-        Definition def(Operation::none, {input[1]}, {});
-        m_cells[input[0]] = Cell(def);
+        m_cells.emplace(input[0], Cell(Definition(Operation::NONE, {input[1]}, {})));
     }
     else {
         try {
-            Definition def(Operation::none, {}, {std::stod(input[1])});
-            m_cells[input[0]] = Cell(def);
+            m_cells.emplace(input[0], Cell(Definition(Operation::NONE, {}, {std::stod(input[1])})));
         } catch(...) {}
     }
-
-    evaluate_cell(input[0]);
-
 }
 
 

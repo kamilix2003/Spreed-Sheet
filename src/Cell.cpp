@@ -5,17 +5,17 @@
 
 // Constructors
 Cell::Cell()
-    : m_value(0), m_definition(none, {}, {}) {
+    : m_value(0), m_definition(NONE, {}, {}) {
 
 }
 
 Cell::Cell(const double value)
-    : m_value(0), m_definition(none, {}, {value}) {
+    : m_value(0), m_definition(NONE, {}, {value}) {
 
 }
 
 Cell::Cell(const std::string& address)
-    : m_value(0), m_definition(none, {address}, {}) {
+    : m_value(0), m_definition(NONE, {address}, {}) {
 
 }
 
