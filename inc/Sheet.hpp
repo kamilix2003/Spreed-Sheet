@@ -19,10 +19,8 @@ class Sheet {
     void set_sheet_input(const std::string& input);
 
     // File I/O
-    void save_to_file();
-    void load_from_file();
-    void save_to_bin();
-    void load_from_bin();
+    void save_to_file(const std::string& file_name);
+    void load_from_file(const std::string& file_name);
 
     // Evaluation
     void evaluate_cell(const std::string& key);

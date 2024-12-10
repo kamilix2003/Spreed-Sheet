@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <assert.h>
+#include <fstream>
 #include <iostream>
 #include <ostream>
 #include <sstream>
@@ -62,12 +63,27 @@ void Sheet::set_sheet_input(const std::string &input) {
 
 // File I/O
 
-void Sheet::save_to_file() {
-
+void Sheet::save_to_file(const std::string& file_name) {
+    std::ofstream file(file_name);
+    if (file.is_open()) {
+        for (const auto& cell : m_cells) {
+            file << "Cell: " << cell.first;
+            const auto cell_def = cell.second.get_definition();
+            file << "Def: " << cell_def->get_operation();
+            int i = 0;
+            for (const auto& arg : *cell_def->get_args_vec()) {
+                file << "Arg " << i << ": " << arg;
+                i++;
+            }
+            for (const auto constant : *cell_def->get_const_vec()) {
+                file << "Arg " << i << ": " << constant;
+                i++;
+            }
+            file << std::endl;
+        }
+    }
 }
-void Sheet::load_from_file() {}
-void Sheet::save_to_bin() {}
-void Sheet::load_from_bin() {}
+void Sheet::load_from_file(const std::string& file_name) {}
 
 // Evaluation
 void Sheet::evaluate_cell(const std::string &key) {

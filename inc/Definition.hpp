@@ -7,8 +7,12 @@
 
 enum Operation {
     NONE = 0,
-    SUM = 1,
-    PROD = 2,
+    ADD,
+    SUB,
+    MUL,
+    DIV,
+    SUM,
+    PROD,
 };
 
 class Definition {

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Sheet.hpp>
+#include <fstream>
 
 /*
     Test inputs:
@@ -20,12 +21,20 @@
 */
 
 int main() {
-    std::string user_input;
+    std::string user_input, file_name = "../sheet.txt";
     Sheet sheet;
+    // std::cout << "Enter sheet path: ";
+    // std::cin >> file_name;
+    // try {
+    //     sheet.load_from_file(file_name);
+    // } catch (const std::exception& e) {
+    //     std::cout << e.what() << std::endl;
+    // }
     while (true) {
         std::cout << "Enter command: ";
         std::getline(std::cin, user_input);
         if (user_input == "exit" || user_input.empty()) {
+            sheet.save_to_file(file_name);
             return 0;
         }
         try {
