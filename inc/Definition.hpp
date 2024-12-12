@@ -3,7 +3,7 @@
 #include <array>
 #include <string>
 
-#define OP_COUNT 3
+#define OP_COUNT 7
 
 enum Operation {
     NONE = 0,

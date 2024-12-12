@@ -22,7 +22,11 @@ std::vector<std::string> split_sheet_input(const std::string &input) {
 const std::array<std::string, OP_COUNT> op_str = {
     "NONE",
     "ADD",
+    "SUB",
     "MUL",
+    "DIV",
+    "SUM",
+    "PROD",
 };
 
 Operation is_operator(const std::string& input) {
@@ -64,26 +68,90 @@ void Sheet::set_sheet_input(const std::string &input) {
 // File I/O
 
 void Sheet::save_to_file(const std::string& file_name) {
-    std::ofstream file(file_name);
-    if (file.is_open()) {
-        for (const auto& cell : m_cells) {
-            file << "Cell: " << cell.first;
-            const auto cell_def = cell.second.get_definition();
-            file << "Def: " << cell_def->get_operation();
-            int i = 0;
-            for (const auto& arg : *cell_def->get_args_vec()) {
-                file << "Arg " << i << ": " << arg;
-                i++;
-            }
-            for (const auto constant : *cell_def->get_const_vec()) {
-                file << "Arg " << i << ": " << constant;
-                i++;
-            }
-            file << std::endl;
-        }
+    if (file_name.empty()) {
+        throw std::invalid_argument("Empty file name");
     }
+    std::ofstream file(file_name);
+    if (!file.is_open()) {
+        throw std::invalid_argument("Cannot open file");
+    }
+    for ( const auto& cell : m_cells ) {
+
+        file << cell.first << "{";
+
+        auto& current_cell = cell.second;
+        auto current_def = current_cell.get_definition();
+        file << op_str[current_def->get_operation()] << "";
+
+        auto arg_vec = *current_def->get_args_vec();
+        file << "[";
+        for (const auto& a : arg_vec) {
+            file << a << ",";
+        }
+        file << "]";
+
+        auto const_vec = *current_def->get_const_vec();
+        file << "[";
+        for (const auto& c : const_vec) {
+            file << c << ",";
+        }
+        file << "]";
+
+    file << "}\n";
+    }
+    file.close();
 }
-void Sheet::load_from_file(const std::string& file_name) {}
+void Sheet::load_from_file(const std::string& file_name) {
+
+    struct Current_cell {
+        std::string name;
+        std::string op;
+        std::vector<std::string> args;
+        std::vector<double> consts;
+    };
+
+    m_cells.clear();
+    std::ifstream file(file_name);
+    if (!file.is_open()) {
+        throw std::invalid_argument("File does not exist");
+    }
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    std::string cell_line;
+    while (std::getline(buffer, cell_line, '\n')) {
+        Current_cell cell{};
+        if (!is_address(cell_line.substr(0, 4))) {
+            throw std::invalid_argument("Invalid input");
+        }
+        cell.name = cell_line.substr(0, 4);
+        cell.op = cell_line.substr(
+            cell_line.find_first_of('{') + 1,
+            cell_line.find_first_of('[') - cell_line.find_first_of('{') - 1);
+        std::stringstream args_stream(cell_line.substr(
+            cell_line.find_first_of('[') + 1,
+            cell_line.find_first_of(']') - cell_line.find_first_of('[') - 1));
+        std::string token;
+        while (std::getline(args_stream, token, ',')) {
+            cell.args.push_back(token);
+        }
+        std::stringstream consts_stream(cell_line.substr(
+            cell_line.find_last_of('[') + 1,
+            cell_line.find_last_of(']') - cell_line.find_last_of('[') - 1));
+        while (std::getline(consts_stream, token, ',')) {
+            cell.consts.push_back(std::stod(token));
+        }
+
+        m_cells[cell.name] = Cell(
+            Definition(
+                is_operator(cell.op),
+                cell.args,
+                cell.consts
+                )
+            );
+    }
+    file.close();
+}
+
 
 // Evaluation
 void Sheet::evaluate_cell(const std::string &key) {

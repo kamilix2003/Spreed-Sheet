@@ -21,15 +21,17 @@
 */
 
 int main() {
-    std::string user_input, file_name = "../sheet.txt";
+    std::string user_input;
     Sheet sheet;
-    // std::cout << "Enter sheet path: ";
-    // std::cin >> file_name;
-    // try {
-    //     sheet.load_from_file(file_name);
-    // } catch (const std::exception& e) {
-    //     std::cout << e.what() << std::endl;
-    // }
+    std::cout << "Enter sheet: ";
+    std::getline(std::cin, user_input);
+    const std::string file_name = user_input;
+    try {
+        sheet.load_from_file("../files/" + file_name + ".txt");
+    } catch (const std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
+
     while (true) {
         std::cout << "Enter command: ";
         std::getline(std::cin, user_input);
