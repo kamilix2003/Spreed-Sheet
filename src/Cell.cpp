@@ -3,61 +3,62 @@
 #include <utility>
 #include "Cell.hpp"
 
+#include <memory>
+
 // Constructors
 Cell::Cell()
-    : m_value(0), m_definition(NONE, {}, {}) {
+    : m_value(0){
 
 }
 
 Cell::Cell(const double value)
-    : m_value(0), m_definition(NONE, {}, {value}) {
+    : m_value(value) {
 
 }
 
-Cell::Cell(const std::string& address)
-    : m_value(0), m_definition(NONE, {address}, {}) {
-
-}
-
-Cell::Cell(const Definition &definition)
-    : m_value(0), m_definition(definition) {
-
-}
 
 // Getters
-double Cell::get_value() const {
+double Cell::get() const {
     return m_value;
 }
 
-std::shared_ptr<Definition> Cell::get_definition() const {
-    return std::make_shared<Definition>(m_definition);
+std::unique_ptr<double> Cell::get_ptr() const {
+    return std::make_unique<double>(m_value);
 }
-
 
 // Setters
-void Cell::set_value(const double value) {
-    m_value = value;
+void Cell::set(const double rhs) {
+    m_value = rhs;
 }
 
-void Cell::add_value(double value) {
-    m_value += value;
+// Operations
+void Cell::add(double rhs) {
+    m_value += rhs;
 }
-
-void Cell::mul_value(double value) {
-    m_value *= value;
+void Cell::add(double rhs, double lhs) {
+    m_value = rhs + lhs;
 }
-
-void Cell::set_definition(const Definition &definition) {
-    m_definition = definition;
+void Cell::sub(double rhs) {
+    m_value -= rhs;
+}
+void Cell::sub(double rhs, double lhs) {
+    m_value = rhs - lhs;
+}
+void Cell::mul(double rhs) {
+    m_value *= rhs;
+}
+void Cell::mul(double rhs, double lhs) {
+    m_value = rhs * lhs;
+}
+void Cell::div(double rhs) {
+    m_value /= rhs;
+}
+void Cell::div(double lhs, double rhs) {
+    m_value = lhs / rhs;
 }
 
 // Utility
 
-void Cell::print_value() const {
-    std::cout << m_value << std::endl;
-}
-
 void Cell::print() const {
     std::cout << "Value : " << m_value << std::endl;
-    m_definition.print();
 }

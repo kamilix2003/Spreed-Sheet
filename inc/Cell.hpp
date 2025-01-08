@@ -1,35 +1,41 @@
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
-#include "Definition.hpp"
 
-class Sheet;
 
 class Cell{
 private:
     double m_value;
-    Definition m_definition;
 
 public:
     // Constructors
     Cell();
     explicit Cell(double value);
-    explicit Cell(const std::string& address);
-    explicit Cell(const Definition& definition);
+    explicit Cell(std::string key);
 
     // Getters
-    double get_value() const;
-    std::shared_ptr<Definition> get_definition() const;
+    double get() const;
+    std::unique_ptr<double> get_ptr() const;
 
     // Setters
-    void set_value(double value);
-    void add_value(double value);
-    void mul_value(double value);
-    void set_definition(const Definition& definition);
+    void set(double value);
+    void set(std::string key);
+
+    // Operations
+    void add(double rhs);
+    void add(double lhs, double rhs);
+
+    void sub(double rhs);
+    void sub(double lhs, double rhs);
+
+    void mul(double rhs);
+    void mul(double lhs, double rhs);
+
+    void div(double rhs);
+    void div(double lhs, double rhs);
 
     // Utility
-    void print_value() const;
     void print() const;
-
 };

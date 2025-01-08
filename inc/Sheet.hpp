@@ -1,6 +1,19 @@
 #include <map>
 #include <memory>
+
 #include "Cell.hpp"
+
+const unsigned int OP_COUNT = 7;
+
+enum Operation {
+    SET = 0,
+    ADD,
+    SUB,
+    MUL,
+    DIV,
+    SUM,
+    PROD,
+};
 
 class Sheet {
     private:
@@ -12,10 +25,14 @@ class Sheet {
 
 
     // Getters
-    Cell get_cell(const std::string& key);
+    std::shared_ptr<Cell> get_cell(const std::string& key);
+    double get_value(const std::string& key);
+    std::unique_ptr<double> get_value_ptr(const std::string& key);
 
     // Setters
     void set_cell(const std::string& key, const Cell& cell);
+    void set_cell(const std::string& key, double value);
+    void set_cell(const std::string& key, const std::string& key_ref);
     void set_sheet_input(const std::string& input);
 
     // File I/O
@@ -23,8 +40,6 @@ class Sheet {
     void load_from_file(const std::string& file_name);
 
     // Evaluation
-    void evaluate_cell(const std::string& key);
-    void evaluate_sheet();
     void process_sheet_input();
 
     // Utility

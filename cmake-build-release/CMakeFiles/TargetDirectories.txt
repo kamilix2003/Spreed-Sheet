@@ -1,0 +1,3 @@
+C:/Users/kamaj/CLionProjects/Spreed-Sheet/cmake-build-release/CMakeFiles/Spreed_Sheet.dir
+C:/Users/kamaj/CLionProjects/Spreed-Sheet/cmake-build-release/CMakeFiles/edit_cache.dir
+C:/Users/kamaj/CLionProjects/Spreed-Sheet/cmake-build-release/CMakeFiles/rebuild_cache.dir

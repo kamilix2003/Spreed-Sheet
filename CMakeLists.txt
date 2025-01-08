@@ -8,6 +8,5 @@ include_directories(inc)
 add_executable(Spreed_Sheet src/main.cpp
         src/Cell.cpp
         src/Sheet.cpp
-        src/Definition.cpp
-        inc/Definition.hpp
+        inc/Display.h
 )
