@@ -1,10 +1,11 @@
-#include <iostream>
-#include <fstream>
-
 #include "Display.h"
 
 
 int main() {
-    Display display;
-    display.loop();
+    try {
+        Display display;
+        display.loop();
+    } catch(...) {
+        return 0;
+    }
 }

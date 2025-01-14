@@ -9,4 +9,5 @@ add_executable(Spreed_Sheet src/main.cpp
         src/Cell.cpp
         src/Sheet.cpp
         inc/Display.h
+        src/Display.cpp
 )

@@ -13,4 +13,3 @@ Operations:
 - SUB
 - MUL
 - DIV
-Noncommutative operations take first argument as positive/numerator.

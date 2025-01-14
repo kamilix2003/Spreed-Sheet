@@ -1,6 +1,5 @@
 
 #include <iostream>
-#include <utility>
 #include "Cell.hpp"
 
 #include <memory>
@@ -35,26 +34,17 @@ void Cell::set(const double rhs) {
 void Cell::add(double rhs) {
     m_value += rhs;
 }
-void Cell::add(double rhs, double lhs) {
-    m_value = rhs + lhs;
-}
 void Cell::sub(double rhs) {
     m_value -= rhs;
-}
-void Cell::sub(double rhs, double lhs) {
-    m_value = rhs - lhs;
 }
 void Cell::mul(double rhs) {
     m_value *= rhs;
 }
-void Cell::mul(double rhs, double lhs) {
-    m_value = rhs * lhs;
-}
 void Cell::div(double rhs) {
+    if (rhs == 0) {
+        throw std::invalid_argument("Division by zero");
+    }
     m_value /= rhs;
-}
-void Cell::div(double lhs, double rhs) {
-    m_value = lhs / rhs;
 }
 
 // Utility
