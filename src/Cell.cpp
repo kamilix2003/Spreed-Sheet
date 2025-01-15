@@ -1,8 +1,4 @@
-
-#include <iostream>
 #include "Cell.hpp"
-
-#include <memory>
 
 // Constructors
 Cell::Cell()

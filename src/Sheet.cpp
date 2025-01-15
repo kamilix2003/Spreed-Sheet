@@ -1,14 +1,6 @@
 
 #include "Sheet.hpp"
 
-#include <algorithm>
-#include <array>
-#include <fstream>
-#include <iostream>
-#include <ostream>
-#include <sstream>
-#include <string>
-
 const std::array<std::string, OP_COUNT> op_str = {
     "SET",
     "ADD",
@@ -47,6 +39,7 @@ bool is_address(const std::string& input) {
     return letter && number;
 }
 
+/*
 std::pair<std::string, int> address_to_pair(const std::string& input) {
     std::pair<std::string, int> result = {"", 0};
     for (const char i : input) {
@@ -62,6 +55,7 @@ std::pair<std::string, int> address_to_pair(const std::string& input) {
     }
     return result;
 }
+*/
 
 // Destructors
 

@@ -1,8 +1,6 @@
 
 #include "Display.h"
 
-#include <algorithm>
-
 Display::Display() {
     while (true) {
         std::cout << "Enter sheet path: ";
@@ -50,8 +48,10 @@ void Display::print_instructions() {
 }
 
 void Display::loop() {
+
     clear_screen();
     screen_home();
+
     while (true) {
         current_sheet.print_sheet_values();
         std::cout << "Enter command: ";
@@ -79,7 +79,6 @@ void Display::loop() {
             bell();
             print_error(e.what());
         }
-
     }
 
     clear_screen();

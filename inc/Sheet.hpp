@@ -1,6 +1,10 @@
 #pragma once
 #include <map>
-#include <memory>
+#include <array>
+#include <fstream>
+#include <iostream>
+#include <ostream>
+#include <sstream>
 
 #include "Cell.hpp"
 
