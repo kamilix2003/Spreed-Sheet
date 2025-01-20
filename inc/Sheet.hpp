@@ -8,7 +8,9 @@
 
 #include "Cell.hpp"
 
-# define OP_COUNT 5
+#define  OP_COUNT 5
+#define  FILE_EXT ".txt"
+#define  FILE_DIR "./"
 
 enum Operation {
     SET = 0,
@@ -42,5 +44,6 @@ class Sheet {
 
     // Utility
     bool cell_exist(const std::string& key) const;
+    std::string file_name_to_path(const std::string& file_name) const;
     void print_sheet_values() const;
 };
