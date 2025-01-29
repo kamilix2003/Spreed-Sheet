@@ -1,13 +1,8 @@
 # ninja log v6
-706	782	7586806546364839	Spreed_Sheet.exe	acc1de0b7b9b3050
-9	407	7586473581275773	CMakeFiles/Spreed_Sheet.dir/src/Cell.cpp.obj	fa718942f6d0306
-6	706	7586806539373258	CMakeFiles/Spreed_Sheet.dir/src/Sheet.cpp.obj	7595cf81f66766da
-3	400	7586806539343248	CMakeFiles/Spreed_Sheet.dir/src/main.cpp.obj	cda84070c249b772
-9	470	7586806539393268	CMakeFiles/Spreed_Sheet.dir/src/Display.cpp.obj	3f45633d7b31efec
-2	191	7587727725611273	build.ninja	9b6d6d1acbaa6a72
-4	1309	7587727741134782	CMakeFiles/Spreed_Sheet.dir/src/Sheet.cpp.obj	7595cf81f66766da
-1310	1615	7587727754192298	Spreed_Sheet.exe	acc1de0b7b9b3050
-5	617	7590317780210884	CMakeFiles/Spreed_Sheet.dir/src/main.cpp.obj	cda84070c249b772
-12	681	7590317780290905	CMakeFiles/Spreed_Sheet.dir/src/Display.cpp.obj	3f45633d7b31efec
-9	888	7590317780260897	CMakeFiles/Spreed_Sheet.dir/src/Sheet.cpp.obj	7595cf81f66766da
-889	1093	7590317789052169	Spreed_Sheet.exe	acc1de0b7b9b3050
+673	757	7595430109241847	Spreed_Sheet.exe	757e36e8a8b0afba
+7	371	7595427737230366	CMakeFiles/Spreed_Sheet.dir/src/Cell.cpp.obj	fa718942f6d0306
+8	673	7595430102590353	CMakeFiles/Spreed_Sheet.dir/src/Sheet.cpp.obj	7595cf81f66766da
+4	421	7595430102560340	CMakeFiles/Spreed_Sheet.dir/src/main.cpp.obj	cda84070c249b772
+10	489	7595430102620357	CMakeFiles/Spreed_Sheet.dir/src/Display.cpp.obj	3f45633d7b31efec
+2	191	7598554044637650	build.ninja	9b6d6d1acbaa6a72
+13	441	7595430102640356	CMakeFiles/Spreed_Sheet.dir/src/Utils.cpp.obj	deb447da4b7c07d6

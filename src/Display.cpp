@@ -1,5 +1,5 @@
 
-#include "Display.h"
+#include "Display.hpp"
 
 Display::Display() {
     greeting();

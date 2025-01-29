@@ -11,14 +11,9 @@ Cell::Cell(const double value)
 
 }
 
-
 // Getters
 double Cell::get() const {
     return m_value;
-}
-
-std::unique_ptr<double> Cell::get_ptr() const {
-    return std::make_unique<double>(m_value);
 }
 
 // Setters
@@ -41,10 +36,4 @@ void Cell::div(double rhs) {
         throw std::invalid_argument("Division by zero");
     }
     m_value /= rhs;
-}
-
-// Utility
-
-void Cell::print() const {
-    std::cout << "Value : " << m_value << std::endl;
 }

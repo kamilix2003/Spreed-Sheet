@@ -1,6 +1,7 @@
-#pragma once
-#include <Sheet.hpp>
+
 #include <algorithm>
+
+#include <Sheet.hpp>
 
 class Display {
 private:

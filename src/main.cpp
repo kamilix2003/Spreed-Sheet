@@ -1,4 +1,4 @@
-#include "Display.h"
+#include "Display.hpp"
 
 
 int main() {
@@ -8,5 +8,4 @@ int main() {
     } catch(...) {
         return 0;
     }
-
 }

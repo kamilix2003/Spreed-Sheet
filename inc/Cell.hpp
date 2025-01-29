@@ -1,10 +1,8 @@
 #pragma once
+
 #include <iostream>
 #include <memory>
 #include <string>
-
-
-
 
 class Cell{
 private:
@@ -17,7 +15,6 @@ public:
 
     // Getters
     double get() const;
-    std::unique_ptr<double> get_ptr() const;
 
     // Setters
     void set(double value);
@@ -27,7 +24,4 @@ public:
     void sub(double rhs);
     void mul(double rhs);
     void div(double rhs);
-
-    // Utility
-    void print() const;
 };

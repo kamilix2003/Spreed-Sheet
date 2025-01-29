@@ -77,6 +77,13 @@ build CMakeFiles/Spreed_Sheet.dir/src/Display.cpp.obj: CXX_COMPILER__Spreed_Shee
   OBJECT_DIR = CMakeFiles\Spreed_Sheet.dir
   OBJECT_FILE_DIR = CMakeFiles\Spreed_Sheet.dir\src
 
+build CMakeFiles/Spreed_Sheet.dir/src/Utils.cpp.obj: CXX_COMPILER__Spreed_Sheet_unscanned_Debug C$:/Users/kamaj/CLionProjects/Spreed-Sheet/src/Utils.cpp || cmake_object_order_depends_target_Spreed_Sheet
+  DEP_FILE = CMakeFiles\Spreed_Sheet.dir\src\Utils.cpp.obj.d
+  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/kamaj/CLionProjects/Spreed-Sheet/inc
+  OBJECT_DIR = CMakeFiles\Spreed_Sheet.dir
+  OBJECT_FILE_DIR = CMakeFiles\Spreed_Sheet.dir\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Spreed_Sheet
@@ -85,7 +92,7 @@ build CMakeFiles/Spreed_Sheet.dir/src/Display.cpp.obj: CXX_COMPILER__Spreed_Shee
 #############################################
 # Link the executable Spreed_Sheet.exe
 
-build Spreed_Sheet.exe: CXX_EXECUTABLE_LINKER__Spreed_Sheet_Debug CMakeFiles/Spreed_Sheet.dir/src/main.cpp.obj CMakeFiles/Spreed_Sheet.dir/src/Cell.cpp.obj CMakeFiles/Spreed_Sheet.dir/src/Sheet.cpp.obj CMakeFiles/Spreed_Sheet.dir/src/Display.cpp.obj
+build Spreed_Sheet.exe: CXX_EXECUTABLE_LINKER__Spreed_Sheet_Debug CMakeFiles/Spreed_Sheet.dir/src/main.cpp.obj CMakeFiles/Spreed_Sheet.dir/src/Cell.cpp.obj CMakeFiles/Spreed_Sheet.dir/src/Sheet.cpp.obj CMakeFiles/Spreed_Sheet.dir/src/Display.cpp.obj CMakeFiles/Spreed_Sheet.dir/src/Utils.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Spreed_Sheet.dir
