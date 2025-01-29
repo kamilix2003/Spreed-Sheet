@@ -1,6 +1,0 @@
-[makefile cookbook](https://makefiletutorial.com/#makefile-cookbook)
-[ASCII control characters](https://en.wikipedia.org/wiki/ASCII#ASCII_control_characters)
-[UNI-CODE control characters](https://en.wikipedia.org/wiki/List_of_Unicode_characters)
-[ANSI-escape-colors](https://gist.github.com/RabaDabaDoba/145049536f815903c79944599c6f952a)
-[ANSI-escape-codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
-[ANSI-generator](https://github.com/fidian/ansi)
