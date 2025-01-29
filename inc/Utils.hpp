@@ -16,7 +16,7 @@ enum Operation {
     DIV,
 };
 
-std::string sort_address(std::string& input);
+std::string sort_address(std::string& input);                   // Sorts address characters A1B1 -> AB11
 bool is_address(const std::string& input);
-Operation string_to_operation(const std::string& input);
+Operation string_to_operation(const std::string& input);        // Casts operation keyword string to Operation enum
 bool is_operator(const std::string& input);

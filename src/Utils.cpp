@@ -1,6 +1,7 @@
 
 #include "Utils.hpp"
 
+// Look-up table for operation keywords
 const std::array<std::string, OP_COUNT> op_str = {
     "SET",
     "ADD",

@@ -14,11 +14,11 @@ public:
 
     void loop();
 
-    static bool verify_sheet_name(const std::string& input);
-    static void print_error(const std::string& error);
+    static bool verify_sheet_name(const std::string& input);        // Checks if sheet name is valid
+    static void print_error(const std::string& error);              // Prints message in error format
 
-    static void greeting();
-    static void print_instructions();
+    static void greeting();                                         // Prints greeting message
+    static void print_instructions();                               // Prints basic instructions
 
     // Terminal escape codes wrappers
     static void clear_screen();

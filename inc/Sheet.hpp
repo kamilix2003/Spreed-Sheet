@@ -20,9 +20,9 @@ class Sheet {
     void load_from_file(const std::string& file_name);
 
     // Evaluation
-    void sheet_input(const std::string& sheet_input);
+    void sheet_input(const std::string& sheet_input);                       // Sheet interface
 
     // Utility
-    std::string file_name_to_path(const std::string& file_name) const;
-    void print_sheet_values() const;
+    std::string file_name_to_path(const std::string& file_name) const;      // Returns path to the file
+    void print_sheet_values() const;                                        // Prints all cells
 };
